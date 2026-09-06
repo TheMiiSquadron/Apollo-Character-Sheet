@@ -344,6 +344,11 @@ main {
     opacity: 0.12;
 }
 
+.stat-box > * {
+    position: relative;
+    z-index: 1;
+}
+
 .stat-label {
     color: var(--text-soft);
     font-size: 0.82rem;
@@ -383,25 +388,28 @@ main {
 }
 
 .hp-divider {
-    font-size: 1.2rem;
+    font-size: 1.45rem;
     color: var(--text-soft);
 }
 
 .hp-max {
-    font-size: 1.35rem;
-    color: var(--text-soft);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
 }
 
 .hp-bar {
-    width: 80%;
-    height: 8px;
+    width: min(100%, 220px);
+    height: 12px;
     margin-top: 14px;
 
     overflow: hidden;
 
     border-radius: 999px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.32);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .hp-bar-fill {
@@ -415,6 +423,8 @@ main {
         var(--red-dark),
         var(--red-bright)
     );
+
+    box-shadow: 0 0 16px rgba(255, 59, 59, 0.45);
 }
 
 /* =========================================
