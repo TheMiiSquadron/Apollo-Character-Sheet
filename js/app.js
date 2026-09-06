@@ -44,13 +44,13 @@ const soulData = {
     fear: {
         level: 0,
         progress: 2,
-        threshold: 35
+        threshold: 50
     },
 
     hate: {
         level: 0,
         progress: 0,
-        threshold: 35
+        threshold: 100
     }
 };
 
