@@ -1,3 +1,9 @@
+const characterStats = {
+    currentHP: 375,
+    maxHP: 375
+};
+
+
 const soulData = {
     determination: {
         level: 2,
@@ -55,6 +61,28 @@ const soulData = {
 };
 
 
+function renderHP() {
+    const currentHPElement = document.querySelector(".hp-current");
+    const maxHPElement = document.querySelector(".hp-max");
+    const hpBarFill = document.querySelector(".hp-bar-fill");
+
+    const hpPercent =
+        (characterStats.currentHP / characterStats.maxHP) * 100;
+
+    if (currentHPElement) {
+        currentHPElement.textContent = characterStats.currentHP;
+    }
+
+    if (maxHPElement) {
+        maxHPElement.textContent = characterStats.maxHP;
+    }
+
+    if (hpBarFill) {
+        hpBarFill.style.width = `${hpPercent}%`;
+    }
+}
+
+
 function updateSoulCard(soulName, soul) {
     const card = document.querySelector(`.soul-card.${soulName}`);
 
@@ -92,4 +120,5 @@ function renderSouls() {
 }
 
 
+renderHP();
 renderSouls();
