@@ -360,32 +360,62 @@ main {
     color: white;
 }
 
-.hp-stat {
+.hp-card {
     grid-column: span 2;
-}
 
-.hp-values {
-    width: 100%;
-    margin-top: 10px;
-
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-}
-
-.hp-values div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.hp-values span {
+.hp-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.hp-current {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.hp-divider {
+    font-size: 1.2rem;
     color: var(--text-soft);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
 }
 
+.hp-max {
+    font-size: 1.35rem;
+    color: var(--text-soft);
+}
+
+.hp-bar {
+    width: 80%;
+    height: 8px;
+    margin-top: 14px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.hp-bar-fill {
+    width: 100%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        var(--red-dark),
+        var(--red-bright)
+    );
+}
 
 /* =========================================
    OTHER SECTIONS
