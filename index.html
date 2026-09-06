@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apollo Character Hub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+
+            <div class="character-title">
+                <p class="eyebrow">Player: Alex</p>
+                <h1>Apollo</h1>
+                <p class="character-subtitle">
+                    Human • Sorcerer • Level 10 • Neutral Good
+                </p>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#character">Character</a>
+                <a href="#souls">Souls</a>
+                <a href="#abilities">Abilities</a>
+                <a href="#forms">Forms</a>
+                <a href="#inventory">Inventory</a>
+                <a href="#lore">Lore</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =====================================
+             CHARACTER
+        ====================================== -->
+
+        <section id="character" class="page-section character-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Character Overview</p>
+                <h2>Apollo</h2>
+            </div>
+
+            <div class="character-layout">
+
+                <article class="character-portrait card">
+                    <div class="portrait-placeholder">
+                        <img
+                            src="images/ApolloHeroForge.png"
+                            alt="Apollo character portrait">
+                    </div>
+                </article>
+
+
+                <article class="character-details card">
+
+                    <h3>Profile</h3>
+
+                    <dl class="profile-list">
+                        <div>
+                            <dt>Player</dt>
+                            <dd>Alex</dd>
+                        </div>
+
+                        <div>
+                            <dt>Character</dt>
+                            <dd>Apollo</dd>
+                        </div>
+
+                        <div>
+                            <dt>Race</dt>
+                            <dd>Human</dd>
+                        </div>
+
+                        <div>
+                            <dt>Class</dt>
+                            <dd>Sorcerer</dd>
+                        </div>
+
+                        <div>
+                            <dt>Level</dt>
+                            <dd>10</dd>
+                        </div>
+
+                        <div>
+                            <dt>Alignment</dt>
+                            <dd>Neutral Good</dd>
+                        </div>
+
+                        <div>
+                            <dt>Age</dt>
+                            <dd>27</dd>
+                        </div>
+
+                        <div>
+                            <dt>Height</dt>
+                            <dd>6'5"</dd>
+                        </div>
+
+                        <div>
+                            <dt>Weight</dt>
+                            <dd>194 lbs</dd>
+                        </div>
+                    </dl>
+
+                </article>
+
+
+                <article class="combat-stats card">
+
+                    <h3>Combat Stats</h3>
+
+                    <div class="stat-grid">
+
+                        <div class="stat-box">
+                            <span class="stat-label">Attack</span>
+                            <strong>19</strong>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">Defense</span>
+                            <strong>30</strong>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">Energy</span>
+                            <strong>35</strong>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">Max</span>
+                            <strong>375</strong>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">Current</span>
+                            <strong>375</strong>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">LF</span>
+                            <strong>1575</strong>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SOUL SYSTEM
+        ====================================== -->
+
+        <section id="souls" class="page-section soul-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Emotional Progression</p>
+                <h2>Soul Resonance</h2>
+
+                <p class="section-description">
+                    Performing or witnessing actions associated with a trait
+                    builds resonance with that emotion. Every 35 instances
+                    increases the trait by one level.
+                </p>
+            </div>
+
+
+            <div class="soul-grid">
+
+
+                <!-- DETERMINATION -->
+
+                <article class="soul-card determination">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Determination</p>
+                            <p class="soul-domain">Bladed Weaponry</p>
+                        </div>
+
+                        <span class="soul-status">Established</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+
+                        <span class="progress-text">30</span>
+                    </div>
+
+                    <div class="soul-details">
+                        <p>
+                            <strong>Examples:</strong>
+                            Scythe, sword, dagger
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Willpower / Focus
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <!-- BRAVERY -->
+
+                <article class="soul-card bravery">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Bravery</p>
+                            <p class="soul-domain">Heavy Battering Weapons</p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 31.4%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">11 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+                        <p>
+                            <strong>Examples:</strong>
+                            Warhammer, club, mace, axe
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Strength
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <!-- JUSTICE -->
+
+                <article class="soul-card justice">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Justice</p>
+                            <p class="soul-domain">Projectiles</p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 37.1%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">13 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+                        <p>
+                            <strong>Examples:</strong>
+                            Bullets, arrows, throwing stars
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Projectiles
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <!-- KINDNESS -->
+
+                <article class="soul-card kindness">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Kindness</p>
+                            <p class="soul-domain">
+                                Defense &amp; Healing
+                            </p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 54.3%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">19 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+                        <p>
+                            <strong>Examples:</strong>
+                            Shields, healing magic
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Healing &amp; Defense
+                        </p>
+
+                        <p class="special-note">
+                            Kindness unlocks its Imbue ability at Level 1.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <!-- PATIENCE -->
+
+                <article class="soul-card patience">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Patience</p>
+                            <p class="soul-domain">
+                                Tethering Weapons
+                            </p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 34.3%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">12 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+
+                        <p>
+                            <strong>Examples:</strong>
+                            Whips, chains, rope
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Calm Mind
+                        </p>
+
+                        <p>
+                            Relieves anger and allows the next action
+                            to be taken with a clear head.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- INTEGRITY -->
+
+                <article class="soul-card integrity">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Integrity</p>
+                            <p class="soul-domain">
+                                Swift / Evasion Gear
+                            </p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 28.6%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">10 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+
+                        <p>
+                            <strong>Examples:</strong>
+                            Cloaks, greaves, bladed fans
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Speed
+                        </p>
+
+                        <p>
+                            Grants rapid movement and enhanced evasion.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PERSEVERANCE -->
+
+                <article class="soul-card perseverance">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Perseverance</p>
+                            <p class="soul-domain">
+                                Physical Attack
+                            </p>
+                        </div>
+
+                        <span class="soul-level">Level 0</span>
+                    </header>
+
+                    <div class="soul-progress">
+                        <div class="progress-bar">
+                            <div
+                                class="progress-fill"
+                                style="width: 37.1%;">
+                            </div>
+                        </div>
+
+                        <span class="progress-text">13 / 35</span>
+                    </div>
+
+                    <div class="soul-details">
+
+                        <p>
+                            <strong>Examples:</strong>
+                            Gauntlets, brass knuckles, nunchucks
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Wisdom / Prediction
+                        </p>
+
+                        <p>
+                            Allows the user to predict an opponent's
+                            next move. Repeated predictions stack damage
+                            onto the next attack.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FEAR -->
+
+                <article class="soul-card fear">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Fear</p>
+                            <p class="soul-domain">Poison</p>
+                        </div>
+
+                        <span class="soul-level">Special</span>
+                    </header>
+
+                    <div class="soul-details">
+
+                        <p>
+                            <strong>Manifestation:</strong>
+                            Poison Imbue
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Poison
+                        </p>
+
+                        <p class="warning-note">
+                            Self-destructive. Causes lingering psychological
+                            and physical decay.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- HATE -->
+
+                <article class="soul-card hate">
+
+                    <header class="soul-card-header">
+                        <div>
+                            <p class="soul-name">Hate</p>
+                            <p class="soul-domain">Pure Energy</p>
+                        </div>
+
+                        <span class="soul-level">Unstable</span>
+                    </header>
+
+                    <div class="soul-details">
+
+                        <p>
+                            Powerful, unpredictable energy.
+                        </p>
+
+                        <p>
+                            <strong>Imbue:</strong>
+                            Rage
+                        </p>
+
+                        <p class="warning-note">
+                            High-risk explosive power that threatens
+                            loss of control.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ABILITIES
+        ====================================== -->
+
+        <section id="abilities" class="page-section abilities-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Combat &amp; Utility</p>
+                <h2>Abilities</h2>
+            </div>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <h3>Flight</h3>
+                    <p>
+                        Apollo can use energy to achieve controlled flight.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Energy Control</h3>
+                    <p>
+                        Apollo can channel emotional energy into attacks,
+                        manifestations and other abilities.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Energy Boost</h3>
+                    <p>
+                        Temporarily increases Apollo's combat performance
+                        through concentrated energy.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FORMS
+        ====================================== -->
+
+        <section id="forms" class="page-section forms-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Transformations</p>
+                <h2>Forms</h2>
+            </div>
+
+            <div class="card-grid">
+
+                <article class="form-card card">
+                    <p class="form-number">Form 1</p>
+                    <h3>Determined</h3>
+                    <p>
+                        Apollo's established Determination-based form.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             INVENTORY
+        ====================================== -->
+
+        <section id="inventory" class="page-section inventory-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Equipment</p>
+                <h2>Inventory</h2>
+            </div>
+
+            <div class="card">
+                <ul class="inventory-list">
+                    <li>Inventory item placeholder</li>
+                </ul>
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             LORE
+        ====================================== -->
+
+        <section id="lore" class="page-section lore-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">Character Archive</p>
+                <h2>Lore</h2>
+            </div>
+
+
+            <div class="lore-grid">
+
+
+                <article class="card">
+
+                    <h3>Personality</h3>
+
+                    <ul>
+                        <li>Determined</li>
+                        <li>Kind-hearted</li>
+                        <li>Short-fused</li>
+                        <li>Laid-back / relaxed</li>
+                        <li>Internally energetic</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="card">
+
+                    <h3>Appearance</h3>
+
+                    <ul>
+                        <li>Brown hair with black tips</li>
+                        <li>
+                            Black and red outer jacket with shoulder padding
+                        </li>
+                        <li>Dark red hoodie</li>
+                        <li>Black shirt</li>
+                        <li>Black gloves</li>
+                        <li>Black pants</li>
+                        <li>Black / dark-red shoes</li>
+                    </ul>
+
+                </article>
+
+
+                <article class="card backstory-card">
+
+                    <h3>Backstory</h3>
+
+                    <p>
+                        Growing up in a loving home, Apollo cared deeply
+                        for his family. However, his parents expected great
+                        things from their only child, placing considerable
+                        pressure on him.
+                    </p>
+
+                    <p>
+                        When Apollo was 23, his parents died in a tragic
+                        accident. Left with himself and the expectations
+                        they had placed upon him, Apollo left home to pursue
+                        something grand.
+                    </p>
+
+                    <p>
+                        He decided to become a hero for hire. Through
+                        training, Apollo learned to harness his emotions
+                        into raw energy, beginning with the Determination
+                        that drove him to make a name for himself and make
+                        his parents proud.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="site-footer">
+        <p>Apollo Character Hub</p>
+    </footer>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
