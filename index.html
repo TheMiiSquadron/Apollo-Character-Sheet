@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Apollo Character Hub</title>
+    <title>Astrochrome Character Hub</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -35,7 +35,20 @@
     </header>
 
 
+    <section class="character-selector-section">
+        <div class="character-selector-inner">
+            <p class="eyebrow">Party Roster</p>
+            <div
+                class="character-selector"
+                aria-label="Character selector">
+            </div>
+        </div>
+    </section>
+
+
     <main>
+
+        <div class="apollo-view apollo-only">
 
         <!-- =====================================
              CHARACTER
@@ -626,13 +639,52 @@
 
         </section>
 
+        </div>
+
+
+        <section
+            class="page-section placeholder-section"
+            hidden>
+            <article class="placeholder-card card">
+                <p class="eyebrow">Character Overview</p>
+                <h2 class="placeholder-name"></h2>
+
+                <dl class="placeholder-meta">
+                    <div>
+                        <dt>Player</dt>
+                        <dd class="placeholder-player"></dd>
+                    </div>
+
+                    <div>
+                        <dt>Accent</dt>
+                        <dd>
+                            <span class="accent-swatch"></span>
+                            <span class="placeholder-accent"></span>
+                        </dd>
+                    </div>
+                </dl>
+
+                <p class="placeholder-message">
+                    Character data coming soon.
+                </p>
+
+                <a
+                    class="temporary-character-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    hidden>
+                </a>
+            </article>
+        </section>
+
 
 
         <!-- =====================================
              INVENTORY
         ====================================== -->
 
-        <section id="inventory" class="page-section inventory-section">
+        <section id="inventory" class="page-section inventory-section apollo-only">
 
             <div class="section-heading">
                 <p class="eyebrow">Equipment</p>
@@ -653,7 +705,7 @@
              LORE
         ====================================== -->
 
-        <section id="lore" class="page-section lore-section">
+        <section id="lore" class="page-section lore-section apollo-only">
 
             <div class="section-heading">
                 <p class="eyebrow">Character Archive</p>
@@ -736,10 +788,11 @@
 
 
     <footer class="site-footer">
-        <p>Apollo Character Hub</p>
+        <p>Astrochrome Character Hub</p>
     </footer>
 
 
+    <script src="js/characters.js"></script>
     <script src="js/app.js"></script>
 
 </body>

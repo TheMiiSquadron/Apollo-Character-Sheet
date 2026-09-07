@@ -1,80 +1,163 @@
-const characterStats = {
-    currentHP: 375,
-    maxHP: 375
+const roster = window.characterRoster || [];
+const characterDetails = window.characterDetails || {};
+
+const appState = {
+    selectedCharacterId: "apollo"
 };
 
 
-const soulData = {
-    determination: {
-        level: 2,
-        progress: 6,
-        threshold: 35
-    },
+function getSelectedCharacter() {
+    return roster.find((character) => {
+        return character.id === appState.selectedCharacterId;
+    }) || roster[0];
+}
 
-    bravery: {
-        level: 0,
-        progress: 11,
-        threshold: 35
-    },
 
-    justice: {
-        level: 0,
-        progress: 3,
-        threshold: 35
-    },
+function setCharacterAccent(character) {
+    document.documentElement.style.setProperty(
+        "--character-accent",
+        character.accent
+    );
+}
 
-    kindness: {
-        level: 1,
-        progress: 7,
-        threshold: 35
-    },
 
-    patience: {
-        level: 0,
-        progress: 3,
-        threshold: 35
-    },
+function renderHeader(character) {
+    const playerElement = document.querySelector(".character-title .eyebrow");
+    const nameElement = document.querySelector(".character-title h1");
+    const subtitleElement = document.querySelector(".character-subtitle");
 
-    integrity: {
-        level: 0,
-        progress: 2,
-        threshold: 35
-    },
-
-    perseverance: {
-        level: 0,
-        progress: 1,
-        threshold: 35
-    },
-
-    fear: {
-        level: 0,
-        progress: 2,
-        threshold: 50
-    },
-
-    hate: {
-        level: 0,
-        progress: 0,
-        threshold: 100
+    if (playerElement) {
+        playerElement.textContent = `Player: ${character.player}`;
     }
-};
+
+    if (nameElement) {
+        nameElement.textContent = character.name;
+    }
+
+    if (subtitleElement) {
+        subtitleElement.innerHTML =
+            character.subtitle || "Character data coming soon";
+    }
+}
 
 
-function renderHP() {
+function renderCharacterSelector() {
+    const selector = document.querySelector(".character-selector");
+
+    if (!selector) {
+        return;
+    }
+
+    selector.innerHTML = "";
+
+    roster.forEach((character) => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "character-selector-button";
+        button.dataset.character = character.id;
+        button.style.setProperty("--selector-accent", character.accent);
+        button.setAttribute("aria-pressed", "false");
+
+        button.innerHTML = `
+            <span class="selector-name">${character.name}</span>
+            <span class="selector-player">${character.player}</span>
+        `;
+
+        button.addEventListener("click", () => {
+            selectCharacter(character.id);
+        });
+
+        selector.appendChild(button);
+    });
+}
+
+
+function updateCharacterSelector(character) {
+    const buttons = document.querySelectorAll(".character-selector-button");
+
+    buttons.forEach((button) => {
+        const isActive = button.dataset.character === character.id;
+
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
+}
+
+
+function setApolloContentVisible(isVisible) {
+    const apolloView = document.querySelector(".apollo-view");
+    const apolloOnlySections = document.querySelectorAll(".apollo-only");
+
+    if (apolloView) {
+        apolloView.hidden = !isVisible;
+    }
+
+    apolloOnlySections.forEach((section) => {
+        section.hidden = !isVisible;
+    });
+}
+
+
+function renderPlaceholder(character) {
+    const placeholderSection = document.querySelector(".placeholder-section");
+    const nameElement = document.querySelector(".placeholder-name");
+    const playerElement = document.querySelector(".placeholder-player");
+    const accentElement = document.querySelector(".placeholder-accent");
+    const accentSwatch = document.querySelector(".accent-swatch");
+    const temporaryLink = document.querySelector(".temporary-character-link");
+
+    if (!placeholderSection) {
+        return;
+    }
+
+    placeholderSection.hidden = character.status !== "placeholder";
+
+    if (nameElement) {
+        nameElement.textContent = character.name;
+    }
+
+    if (playerElement) {
+        playerElement.textContent = character.player;
+    }
+
+    if (accentElement) {
+        accentElement.textContent = character.accent;
+    }
+
+    if (accentSwatch) {
+        accentSwatch.style.background = character.accent;
+    }
+
+    if (temporaryLink) {
+        temporaryLink.hidden = !character.temporaryLink;
+
+        if (character.temporaryLink) {
+            temporaryLink.href = character.temporaryLink.url;
+            temporaryLink.textContent = character.temporaryLink.label;
+        }
+    }
+}
+
+
+function renderHP(stats) {
     const currentHPElement = document.querySelector(".hp-current");
     const maxHPElement = document.querySelector(".hp-max");
     const hpBarFill = document.querySelector(".hp-bar-fill");
 
+    if (!stats) {
+        return;
+    }
+
     const hpPercent =
-        (characterStats.currentHP / characterStats.maxHP) * 100;
+        (stats.currentHP / stats.maxHP) * 100;
 
     if (currentHPElement) {
-        currentHPElement.textContent = characterStats.currentHP;
+        currentHPElement.textContent = stats.currentHP;
     }
 
     if (maxHPElement) {
-        maxHPElement.textContent = characterStats.maxHP;
+        maxHPElement.textContent = stats.maxHP;
     }
 
     if (hpBarFill) {
@@ -113,12 +196,51 @@ function updateSoulCard(soulName, soul) {
 }
 
 
-function renderSouls() {
-    Object.entries(soulData).forEach(([soulName, soul]) => {
+function renderSouls(souls) {
+    if (!souls) {
+        return;
+    }
+
+    Object.entries(souls).forEach(([soulName, soul]) => {
         updateSoulCard(soulName, soul);
     });
 }
 
 
-renderHP();
-renderSouls();
+function updateMainNavigation(character) {
+    const mainNav = document.querySelector(".main-nav");
+
+    if (!mainNav) {
+        return;
+    }
+
+    mainNav.hidden = character.status !== "complete";
+}
+
+
+function renderCharacter(character) {
+    const details = characterDetails[character.id] || {};
+    const isApollo = character.id === "apollo";
+
+    setCharacterAccent(character);
+    renderHeader(character);
+    updateCharacterSelector(character);
+    updateMainNavigation(character);
+    setApolloContentVisible(isApollo);
+    renderPlaceholder(character);
+
+    if (isApollo) {
+        renderHP(details.stats);
+        renderSouls(details.souls);
+    }
+}
+
+
+function selectCharacter(characterId) {
+    appState.selectedCharacterId = characterId;
+    renderCharacter(getSelectedCharacter());
+}
+
+
+renderCharacterSelector();
+renderCharacter(getSelectedCharacter());

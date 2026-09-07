@@ -1,5 +1,5 @@
 /* =========================================
-   APOLLO CHARACTER HUB
+   ASTROCHROME CHARACTER HUB
    Base layout + Character section styling
 ========================================= */
 
@@ -12,6 +12,7 @@
     --red: #d62f2f;
     --red-dark: #8f1d1d;
     --red-bright: #ff3b3b;
+    --character-accent: #FF0000;
 
     --text: #f4f4f4;
     --text-soft: #b8b8c2;
@@ -134,6 +135,10 @@ main {
     font-size: 0.95rem;
 }
 
+.character-title .eyebrow {
+    color: var(--character-accent);
+}
+
 .main-nav {
     display: flex;
     flex-wrap: wrap;
@@ -158,8 +163,105 @@ main {
 
 .main-nav a:hover {
     color: white;
-    background: rgba(214, 47, 47, 0.16);
+    background: color-mix(
+        in srgb,
+        var(--character-accent) 18%,
+        transparent
+    );
     transform: translateY(-1px);
+}
+
+
+/* =========================================
+   CHARACTER SELECTOR
+========================================= */
+
+.character-selector-section {
+    border-bottom: 1px solid var(--border);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0)
+        ),
+        var(--bg-soft);
+}
+
+.character-selector-inner {
+    width: min(100% - 32px, var(--content-width));
+    margin: 0 auto;
+    padding: 18px 0;
+}
+
+.character-selector {
+    margin-top: 12px;
+
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.character-selector-button {
+    min-height: 70px;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+
+    color: var(--text-soft);
+    font: inherit;
+    text-align: left;
+
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(
+                in srgb,
+                var(--selector-accent) 10%,
+                transparent
+            ),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.character-selector-button:hover,
+.character-selector-button.is-active {
+    color: var(--text);
+    border-color: color-mix(
+        in srgb,
+        var(--selector-accent) 70%,
+        white 5%
+    );
+    box-shadow: 0 0 18px color-mix(
+        in srgb,
+        var(--selector-accent) 28%,
+        transparent
+    );
+    transform: translateY(-1px);
+}
+
+.selector-name {
+    font-weight: 800;
+}
+
+.selector-player {
+    color: var(--selector-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
 }
 
 
@@ -464,6 +566,146 @@ main {
 
 
 /* =========================================
+   PLACEHOLDER CHARACTERS
+========================================= */
+
+.placeholder-section {
+    min-height: 56vh;
+}
+
+.placeholder-card {
+    max-width: 760px;
+    margin: 0 auto;
+
+    border-color: color-mix(
+        in srgb,
+        var(--character-accent) 45%,
+        rgba(255, 255, 255, 0.08)
+    );
+
+    background:
+        radial-gradient(
+            circle at top right,
+            color-mix(
+                in srgb,
+                var(--character-accent) 18%,
+                transparent
+            ),
+            transparent 36%
+        ),
+        var(--panel);
+}
+
+.placeholder-card h2 {
+    margin: 6px 0 18px;
+
+    color: var(--character-accent);
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 1;
+}
+
+.placeholder-card .eyebrow {
+    color: var(--character-accent);
+}
+
+.placeholder-meta {
+    margin: 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.placeholder-meta > div {
+    padding: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.placeholder-meta dt {
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.placeholder-meta dd {
+    margin: 4px 0 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--text);
+    font-weight: 800;
+}
+
+.accent-swatch {
+    width: 14px;
+    height: 14px;
+
+    border-radius: 999px;
+    box-shadow: 0 0 14px var(--character-accent);
+}
+
+.placeholder-message {
+    margin: 24px 0 0;
+    padding: 18px;
+
+    color: var(--text-soft);
+    font-size: 1.05rem;
+
+    border-left: 3px solid var(--character-accent);
+    border-radius: 8px;
+
+    background: color-mix(
+        in srgb,
+        var(--character-accent) 8%,
+        transparent
+    );
+}
+
+.temporary-character-link {
+    width: fit-content;
+    margin-top: 18px;
+    padding: 10px 14px;
+
+    display: inline-flex;
+    align-items: center;
+
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--character-accent) 55%,
+        transparent
+    );
+    border-radius: 8px;
+
+    background: color-mix(
+        in srgb,
+        var(--character-accent) 12%,
+        transparent
+    );
+}
+
+.temporary-character-link:hover {
+    border-color: var(--character-accent);
+    box-shadow: 0 0 18px color-mix(
+        in srgb,
+        var(--character-accent) 24%,
+        transparent
+    );
+}
+
+
+/* =========================================
    SOUL BASE LAYOUT
 ========================================= */
 
@@ -590,6 +832,10 @@ main {
         justify-content: flex-start;
     }
 
+    .character-selector {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .character-layout {
         grid-template-columns: 1fr;
     }
@@ -634,6 +880,23 @@ main {
     .main-nav a {
         padding: 7px 9px;
         font-size: 0.82rem;
+    }
+
+    .character-selector-inner {
+        width: min(100% - 20px, var(--content-width));
+    }
+
+    .character-selector {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .character-selector-button {
+        min-height: 62px;
+        padding: 10px;
+    }
+
+    .placeholder-meta {
+        grid-template-columns: 1fr;
     }
 
     .stat-grid {
