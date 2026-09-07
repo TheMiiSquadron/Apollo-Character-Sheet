@@ -94,7 +94,7 @@ main {
 
 .eyebrow {
     margin: 0;
-    color: var(--red-bright);
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-size: 0.78rem;
@@ -141,7 +141,7 @@ main {
 }
 
 .character-title .eyebrow {
-    color: var(--character-accent);
+    color: white;
 }
 
 .main-nav {
