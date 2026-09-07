@@ -184,6 +184,7 @@ function renderCampaignToolDetail() {
     const titleElement = document.querySelector(".tool-detail-title");
     const descriptionElement =
         document.querySelector(".tool-detail-description");
+    const diceRollerPanel = document.querySelector(".dice-roller-panel");
     const buttons = document.querySelectorAll(".tool-card");
 
     if (!tool) {
@@ -203,6 +204,11 @@ function renderCampaignToolDetail() {
 
     if (descriptionElement) {
         descriptionElement.textContent = tool.placeholder;
+        descriptionElement.hidden = tool.id === "dice-roller";
+    }
+
+    if (diceRollerPanel) {
+        diceRollerPanel.hidden = tool.id !== "dice-roller";
     }
 }
 
@@ -210,6 +216,231 @@ function renderCampaignToolDetail() {
 function selectCampaignTool(toolId) {
     appState.selectedToolId = toolId;
     renderCampaignToolDetail();
+}
+
+
+function getDiceColorValue() {
+    const diceColor = document.getElementById("diceColor");
+    const customDiceColor = document.getElementById("customDiceColor");
+    const colorValue = diceColor ? diceColor.value : "white";
+    const customColor = customDiceColor ? customDiceColor.value : "#8bb8ff";
+    const diceColors = {
+        red: "#ff7b7b",
+        orange: "#ffb366",
+        yellow: "#ffe680",
+        green: "#9cffb2",
+        blue: "#8bb8ff",
+        purple: "#d5a3ff",
+        white: "#ffffff",
+        custom: customColor
+    };
+
+    return diceColors[colorValue] || diceColors.white;
+}
+
+
+function setRollResultColor(color) {
+    document.documentElement.style.setProperty(
+        "--roll-result-color",
+        color
+    );
+}
+
+
+function getRollMode() {
+    const selectedModeInput =
+        document.querySelector('input[name="rollMode"]:checked');
+
+    return selectedModeInput ? selectedModeInput.value : "normal";
+}
+
+
+function clearDcOutcome() {
+    const dcOutcome = document.getElementById("dcOutcome");
+
+    if (!dcOutcome) {
+        return;
+    }
+
+    dcOutcome.textContent = "";
+    dcOutcome.classList.remove("show", "success", "failure", "impossible");
+}
+
+
+function showDcOutcome(result) {
+    const dcOutcome = document.getElementById("dcOutcome");
+
+    if (!dcOutcome) {
+        return;
+    }
+
+    dcOutcome.textContent = result.label;
+    dcOutcome.classList.remove("show", "success", "failure", "impossible");
+    void dcOutcome.offsetWidth;
+    dcOutcome.classList.add("show", result.className);
+}
+
+
+function rollSingleDie(numberOfSides) {
+    return Math.floor(Math.random() * numberOfSides) + 1;
+}
+
+
+function rollDice() {
+    const inputField = document.getElementById("diceInput");
+    const resultArea = document.getElementById("resultArea");
+    const dcInput = document.getElementById("dcTarget");
+
+    if (!inputField || !resultArea || !dcInput) {
+        return;
+    }
+
+    const input = inputField.value.replace(/\s+/g, "");
+    const parsed = input.match(/^(\d+)d(\d+)([+-]\d+)?$/i);
+
+    if (!parsed) {
+        resultArea.value =
+            "Invalid input. Use a dice expression like 2d6+3 or 1d20-1.";
+        clearDcOutcome();
+        return;
+    }
+
+    const numberOfDice = parseInt(parsed[1], 10);
+    const numberOfSides = parseInt(parsed[2], 10);
+    const modifier = parsed[3] ? parseInt(parsed[3], 10) : 0;
+
+    if (
+        Number.isNaN(numberOfDice) ||
+        Number.isNaN(numberOfSides) ||
+        Number.isNaN(modifier) ||
+        numberOfDice <= 0 ||
+        numberOfSides <= 0
+    ) {
+        resultArea.value =
+            "Invalid numbers. Dice count and side count must be positive.";
+        clearDcOutcome();
+        return;
+    }
+
+    const rollMode = getRollMode();
+    const modifierText = modifier >= 0 ? `+${modifier}` : `${modifier}`;
+    const modeLabel = rollMode === "normal" ? "" : ` (${rollMode})`;
+    let result =
+        `Rolling ${numberOfDice}d${numberOfSides}` +
+        `${modifier !== 0 ? modifierText : ""}${modeLabel}...\n\n`;
+    let total = 0;
+
+    for (let i = 1; i <= numberOfDice; i++) {
+        if (rollMode === "normal") {
+            const roll = rollSingleDie(numberOfSides);
+            result += `Die ${i}: ${roll}\n`;
+            total += roll;
+        } else {
+            const rollA = rollSingleDie(numberOfSides);
+            const rollB = rollSingleDie(numberOfSides);
+            const kept =
+                rollMode === "advantage"
+                    ? Math.max(rollA, rollB)
+                    : Math.min(rollA, rollB);
+
+            result += `Die ${i}: ${rollA} / ${rollB} -> ${kept}\n`;
+            total += kept;
+        }
+    }
+
+    total += modifier;
+    result += `\nModifier: ${modifier}\n`;
+    result += `Total: ${total}\n`;
+
+    const dcRaw = dcInput.value.trim();
+
+    if (dcRaw) {
+        const dcValue = parseInt(dcRaw, 10);
+
+        if (Number.isNaN(dcValue) || dcValue < 0) {
+            resultArea.value = "Invalid number to pass. Use 0 or higher.";
+            clearDcOutcome();
+            return;
+        }
+
+        const maxPossibleTotal = (numberOfDice * numberOfSides) + modifier;
+        const impossible = dcValue > maxPossibleTotal;
+        const passed = total >= dcValue;
+        const outcome = impossible
+            ? {
+                label: "IMPOSSIBLE",
+                className: "impossible"
+            }
+            : {
+                label: passed ? "SUCCESS" : "FAILURE",
+                className: passed ? "success" : "failure"
+            };
+
+        result += `Number To Pass: ${dcValue}`;
+        result += ` (${outcome.label})\n`;
+        showDcOutcome(outcome);
+    } else {
+        clearDcOutcome();
+    }
+
+    result += `Highest Possible Roll: ${(numberOfDice * numberOfSides) + modifier}`;
+    resultArea.value = result;
+    setRollResultColor(getDiceColorValue());
+}
+
+
+function setupDiceRoller() {
+    const rollButton = document.getElementById("rollBtn");
+    const diceInput = document.getElementById("diceInput");
+    const diceColor = document.getElementById("diceColor");
+    const customDiceColor = document.getElementById("customDiceColor");
+    const customColorWrap = document.getElementById("customColorWrap");
+
+    if (rollButton) {
+        rollButton.addEventListener("click", rollDice);
+    }
+
+    if (diceInput) {
+        diceInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                rollDice();
+            }
+        });
+    }
+
+    document.querySelectorAll("[data-dice]").forEach((button) => {
+        button.addEventListener("click", () => {
+            if (!diceInput) {
+                return;
+            }
+
+            diceInput.value = button.dataset.dice;
+            diceInput.focus();
+        });
+    });
+
+    if (diceColor) {
+        diceColor.addEventListener("change", () => {
+            if (customColorWrap) {
+                customColorWrap.classList.toggle(
+                    "show",
+                    diceColor.value === "custom"
+                );
+            }
+
+            setRollResultColor(getDiceColorValue());
+        });
+    }
+
+    if (customDiceColor) {
+        customDiceColor.addEventListener("input", () => {
+            if (diceColor && diceColor.value === "custom") {
+                setRollResultColor(getDiceColorValue());
+            }
+        });
+    }
+
+    setRollResultColor(getDiceColorValue());
 }
 
 
@@ -446,4 +677,5 @@ document.querySelectorAll("[data-view-target]").forEach((button) => {
 renderCampaignNavigation();
 renderCharacterSelector();
 renderCampaignTools();
+setupDiceRoller();
 renderCampaignView();
