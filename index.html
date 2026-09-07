@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Astrochrome Character Hub</title>
+    <title>Astrochrome Campaign Hub</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,14 +15,14 @@
         <div class="header-inner">
 
             <div class="character-title">
-                <p class="eyebrow">Player: Alex</p>
-                <h1>Apollo</h1>
+                <p class="eyebrow">Campaign Home</p>
+                <h1>Astrochrome Campaign Hub</h1>
                 <p class="character-subtitle">
-                    Human • Sorcerer • Level 10 • Neutral Good
+                    Table of contents for the campaign.
                 </p>
             </div>
 
-            <nav class="main-nav">
+            <nav class="main-nav" hidden>
                 <a href="#character">Character</a>
                 <a href="#souls">Stats</a>
                 <a href="#abilities">Abilities</a>
@@ -35,7 +35,15 @@
     </header>
 
 
-    <section class="character-selector-section">
+    <section class="campaign-nav-section">
+        <div
+            class="campaign-nav"
+            aria-label="Campaign navigation">
+        </div>
+    </section>
+
+
+    <section class="character-selector-section" hidden>
         <div class="character-selector-inner">
             <p class="eyebrow">Party Roster</p>
             <div
@@ -48,7 +56,181 @@
 
     <main>
 
-        <div class="apollo-view apollo-only">
+        <section
+            class="page-section campaign-view home-view"
+            data-campaign-view="home">
+            <div class="section-heading">
+                <p class="eyebrow">Table of Contents</p>
+                <h2>Astrochrome Campaign Hub</h2>
+            </div>
+
+            <div class="toc-grid">
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="campaign-lore">
+                    <span>Lore</span>
+                    <p>[PLACEHOLDER - Campaign lore and setup will be provided later.]</p>
+                </button>
+
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="maps">
+                    <span>Maps</span>
+                    <p>[PLACEHOLDER - Campaign maps and information will be provided later.]</p>
+                </button>
+
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="npcs">
+                    <span>NPCs</span>
+                    <p>[PLACEHOLDER - Named NPC information will be added later.]</p>
+                </button>
+
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="create-character">
+                    <span>Create a Character</span>
+                    <p>[PLACEHOLDER - Character creation reference will be provided later.]</p>
+                </button>
+
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="characters">
+                    <span>Current Party</span>
+                    <p>Open the party roster and character pages.</p>
+                </button>
+
+                <button
+                    class="toc-card card"
+                    type="button"
+                    data-view-target="campaign-tools">
+                    <span>Campaign Tools</span>
+                    <p>Open table tools for dice, currency, and character sheets.</p>
+                </button>
+            </div>
+        </section>
+
+
+        <section
+            class="page-section campaign-view"
+            data-campaign-view="create-character"
+            hidden>
+            <div class="section-heading">
+                <p class="eyebrow">Campaign Reference</p>
+                <h2>Create a Character</h2>
+            </div>
+
+            <div class="reference-grid">
+                <article class="card content-placeholder">
+                    <h3>How Character Creation Works</h3>
+                    <p>[PLACEHOLDER - Character creation rules will be provided later.]</p>
+                </article>
+
+                <article class="card content-placeholder">
+                    <h3>Races</h3>
+                    <p>[PLACEHOLDER - Race information will be provided later.]</p>
+                </article>
+
+                <article class="card content-placeholder">
+                    <h3>Classes</h3>
+                    <p>[PLACEHOLDER - Class information will be provided later.]</p>
+                </article>
+
+                <article class="card content-placeholder">
+                    <h3>Skills</h3>
+                    <p>[PLACEHOLDER - Skill information will be provided later.]</p>
+                </article>
+
+                <article class="card content-placeholder">
+                    <h3>Abilities</h3>
+                    <p>[PLACEHOLDER - Ability information will be provided later.]</p>
+                </article>
+            </div>
+        </section>
+
+
+        <section
+            class="page-section campaign-view"
+            data-campaign-view="campaign-lore"
+            hidden>
+            <div class="section-heading">
+                <p class="eyebrow">Campaign Archive</p>
+                <h2>Lore</h2>
+            </div>
+
+            <article class="card content-placeholder">
+                <p>[PLACEHOLDER - Campaign lore and setup will be provided later.]</p>
+            </article>
+        </section>
+
+
+        <section
+            class="page-section campaign-view"
+            data-campaign-view="maps"
+            hidden>
+            <div class="section-heading">
+                <p class="eyebrow">World Atlas</p>
+                <h2>Maps</h2>
+            </div>
+
+            <div class="reference-grid map-grid">
+                <article class="card content-placeholder">
+                    <h3>Gaia</h3>
+                    <p>[PLACEHOLDER - Gaia map and information will be provided later.]</p>
+                </article>
+
+                <article class="card content-placeholder">
+                    <h3>Halkyon</h3>
+                    <p>[PLACEHOLDER - Halkyon map and information will be provided later.]</p>
+                </article>
+            </div>
+        </section>
+
+
+        <section
+            class="page-section campaign-view"
+            data-campaign-view="npcs"
+            hidden>
+            <div class="section-heading">
+                <p class="eyebrow">Campaign Cast</p>
+                <h2>Current NPCs</h2>
+            </div>
+
+            <article class="card content-placeholder">
+                <p>[PLACEHOLDER - Named NPC information will be added later.]</p>
+            </article>
+        </section>
+
+
+        <section
+            class="page-section campaign-view"
+            data-campaign-view="campaign-tools"
+            hidden>
+            <div class="section-heading">
+                <p class="eyebrow">Table Utilities</p>
+                <h2>Campaign Tools</h2>
+            </div>
+
+            <div
+                class="tool-grid"
+                aria-label="Campaign tools">
+            </div>
+
+            <article class="card content-placeholder tool-detail">
+                <h3 class="tool-detail-title">Dice Roller</h3>
+                <p class="tool-detail-description">
+                    [PLACEHOLDER - Dice Roller will be rebuilt here later.]
+                </p>
+            </article>
+        </section>
+
+
+        <div class="apollo-view apollo-only" hidden>
 
         <!-- =====================================
              CHARACTER
@@ -684,7 +866,7 @@
              INVENTORY
         ====================================== -->
 
-        <section id="inventory" class="page-section inventory-section apollo-only">
+        <section id="inventory" class="page-section inventory-section apollo-only" hidden>
 
             <div class="section-heading">
                 <p class="eyebrow">Equipment</p>
@@ -705,7 +887,7 @@
              LORE
         ====================================== -->
 
-        <section id="lore" class="page-section lore-section apollo-only">
+        <section id="lore" class="page-section lore-section apollo-only" hidden>
 
             <div class="section-heading">
                 <p class="eyebrow">Character Archive</p>
@@ -788,10 +970,11 @@
 
 
     <footer class="site-footer">
-        <p>Astrochrome Character Hub</p>
+        <p>Astrochrome Campaign Hub</p>
     </footer>
 
 
+    <script src="js/campaign.js"></script>
     <script src="js/characters.js"></script>
     <script src="js/app.js"></script>
 

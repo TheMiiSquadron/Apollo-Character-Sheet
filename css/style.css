@@ -57,6 +57,10 @@ a {
     text-decoration: none;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 
 /* =========================================
    GENERAL LAYOUT
@@ -169,6 +173,176 @@ main {
         transparent
     );
     transform: translateY(-1px);
+}
+
+
+/* =========================================
+   CAMPAIGN NAVIGATION
+========================================= */
+
+.campaign-nav-section {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-soft);
+}
+
+.campaign-nav {
+    width: min(100% - 32px, var(--content-width));
+    margin: 0 auto;
+    padding: 12px 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.campaign-nav-button {
+    padding: 9px 13px;
+
+    color: var(--text-soft);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.campaign-nav-button:hover,
+.campaign-nav-button.is-active {
+    color: var(--text);
+    background: rgba(214, 47, 47, 0.14);
+    border-color: rgba(255, 59, 59, 0.42);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   CAMPAIGN VIEWS
+========================================= */
+
+.home-view {
+    padding-top: 56px;
+}
+
+.toc-grid,
+.reference-grid,
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.toc-card {
+    min-height: 170px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    color: inherit;
+    font: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.toc-card:hover {
+    border-color: rgba(255, 59, 59, 0.42);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(255, 59, 59, 0.18);
+    transform: translateY(-2px);
+}
+
+.toc-card span {
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.toc-card p,
+.content-placeholder p {
+    margin: 14px 0 0;
+    color: var(--text-soft);
+}
+
+.content-placeholder {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.content-placeholder h3 {
+    color: var(--text);
+}
+
+.content-placeholder p {
+    padding: 14px;
+
+    border-left: 3px solid rgba(255, 59, 59, 0.55);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.tool-card {
+    min-height: 118px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text);
+    font: inherit;
+    font-size: 1.08rem;
+    font-weight: 900;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(214, 47, 47, 0.12),
+            rgba(255, 255, 255, 0.02)
+        ),
+        var(--panel);
+
+    border: 1px solid var(--border);
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tool-card:hover,
+.tool-card.is-active {
+    border-color: rgba(255, 59, 59, 0.42);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(255, 59, 59, 0.18);
+    transform: translateY(-2px);
+}
+
+.tool-detail {
+    margin-top: 18px;
 }
 
 
@@ -832,6 +1006,12 @@ main {
         justify-content: flex-start;
     }
 
+    .toc-grid,
+    .reference-grid,
+    .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .character-selector {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -864,6 +1044,7 @@ main {
 @media (max-width: 650px) {
 
     main,
+    .campaign-nav,
     .header-inner,
     .site-footer {
         width: min(100% - 20px, var(--content-width));
@@ -880,6 +1061,21 @@ main {
     .main-nav a {
         padding: 7px 9px;
         font-size: 0.82rem;
+    }
+
+    .campaign-nav-button {
+        padding: 7px 9px;
+        font-size: 0.82rem;
+    }
+
+    .toc-grid,
+    .reference-grid,
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toc-card {
+        min-height: 130px;
     }
 
     .character-selector-inner {
